@@ -13,6 +13,30 @@ https://schema.jupyter.org/[subproject]/[schema-path]/[version].json
 
 ## Install
 
+The package included in this repo installs all of Jupyter's core schemas in
+Jupyter's data directory, e.g. under `share/jupyter/schemas/`.
+
+Install this package using:
 ```
-pip install jupyter-schema
+pip install jupyter-schemas
 ```
+
+This package also includes small Python package for fetching these schemas
+
+For example, to get a list of all installed schemas, try:
+```python
+import jupyter_schemas
+
+print(jupyter_schemas.list_schemas())
+```
+
+You can fetch the contents of a schemas from disk using:
+```python
+# Use the schema's URI to find it
+uri = "https://schema.jupyter.org/jupyter_server/events/contents_service/v1"
+
+# Load the schema
+print(jupyter_schemas.get_jupyter_schema(uri))
+```
+
+
