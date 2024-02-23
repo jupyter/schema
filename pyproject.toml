@@ -36,6 +36,12 @@ Source = "https://github.com/unknown/jupyter-schemas"
 test = [
   "pytest",
 ]
+docs = [
+  "pydata_sphinx_theme",
+  "sphinx",
+  "sphinx_design",
+  "sphinx-jsonschema",
+]
 
 [tool.hatch.version]
 path = "jupyter_schemas.py"
