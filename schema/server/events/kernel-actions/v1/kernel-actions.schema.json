@@ -1,5 +1,6 @@
 {
-  "$id": "https://schema.jupyter.org/jupyter_server/events/kernel_actions/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.jupyter.org/server/events/kernel-actions/v1/kernel-actions.schema.json",
   "version": 1,
   "title": "Kernel Manager activities",
   "personal-data": true,

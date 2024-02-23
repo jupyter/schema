@@ -33,7 +33,7 @@ Source = "https://github.com/unknown/jupyter-schemas"
 path = "jupyter_schemas.py"
 
 [tool.hatch.build.targets.wheel.shared-data]
-"jupyter_server" = "share/jupyter/schema/jupyter_server"
+"schema" = "share/jupyter/schema"
 
 [tool.hatch.envs.default]
 dependencies = ["coverage[toml]>=6.5", "pytest"]
@@ -51,7 +51,7 @@ dependencies = ["mypy>=1.0.0"]
 
 
 [tool.coverage.run]
-source_pkgs = ["jupyter_schemas", "tests"]
+source_pkgs = ["schema", "tests"]
 branch = true
 parallel = true
 
