@@ -22,12 +22,20 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = ["jupyter_core"]
+dependencies = [
+  "jsonschema",
+  "jupyter_core",
+]
 
 [project.urls]
 Documentation = "https://github.com/unknown/jupyter-schemas#readme"
 Issues = "https://github.com/unknown/jupyter-schemas/issues"
 Source = "https://github.com/unknown/jupyter-schemas"
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+]
 
 [tool.hatch.version]
 path = "jupyter_schemas.py"
@@ -48,6 +56,13 @@ python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
 [tool.hatch.envs.types]
 dependencies = ["mypy>=1.0.0"]
+
+
+[tool.pytest.ini_options]
+addopts = [
+    "-raXs", "--color=yes",
+]
+testpaths = ["tests/"]
 
 
 [tool.coverage.run]
