@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.jupyter.org/kernel/messages/v1/kernel-info-request.schema.json",
+  "version": 1,
+  "title": "Kernel info request message",
+  "type": "object",
+  "properties": {
+    "header": {
+      "$ref": "/kernel/messages/v1/message-header.schema.json",
+      "description": "Message header",
+      "properties": {
+        "msg_type": {
+          "const": "kernel_info_request"
+        }
+      }
+    },
+    "content": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "header", "content"
+  ]
+}

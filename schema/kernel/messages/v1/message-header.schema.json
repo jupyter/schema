@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.jupyter.org/kernel/messages/v1/message-header.schema.json",
+  "version": 1,
+  "title": "Message header",
+  "type": "object",
+  "properties": {
+    "msg_id": {
+      "type": "string",
+      "description": "Message ID, must be unique per message, typically a UUID"
+    },
+    "session": {
+      "type": "string",
+      "description": "Session ID, unique per session, typically a UUID"
+    },
+    "username": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "description": "ISO 8601 timestamp for when the message was created"
+    },
+    "msg_type": {
+      "enum": [
+        "kernel_info_request",
+        "kernel_info_reply",
+        "some_other_message_type"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "description": "Message protocol version"
+    }
+  },
+  "required": [
+    "msg_id",
+    "session",
+    "username",
+    "date",
+    "msg_type",
+    "version"
+  ]
+}
