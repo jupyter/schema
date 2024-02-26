@@ -2,6 +2,12 @@
 
 JSON schemas for Jupyter.
 
+## More about this repo
+
+This repo is currently a work in progress. 
+
+The `stable` branch is configured to deploy via GitHub Pages to schema.jupyter.org. Content in the `stable` branch is considered published, canonical, and stable, whereas content in `main` branch is considered in-progress, latest, pre-published.
+
 ## Url format
 
 ```
