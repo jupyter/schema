@@ -1,0 +1,33 @@
+{
+  "$id": "https://schema.jupyter.org/jupyter_server/events/gateway_client/v1",
+  "version": 1,
+  "title": "Gateway Client activities.",
+  "personal-data": true,
+  "description": "Record events of a gateway client.\n",
+  "type": "object",
+  "required": [
+    "status",
+    "msg"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "error",
+        "success"
+      ],
+      "description": "Status received by Gateway client based on the rest api operation to gateway kernel.\n\nThis is a required field.\n\nPossible values:\n\n1. error\n   Error response from a rest api operation to gateway kernel.\n\n2. success\n   Success response from a rest api operation to gateway kernel.\n"
+    },
+    "status_code": {
+      "type": "number",
+      "description": "Http response codes from a rest api operation to gateway kernel.\nExamples: 200, 400, 502, 503, 599 etc.\n"
+    },
+    "msg": {
+      "type": "string",
+      "description": "Description of the event being emitted.\n"
+    },
+    "gateway_url": {
+      "type": "string",
+      "description": "Gateway url where the remote server exist.\n"
+    }
+  }
+}

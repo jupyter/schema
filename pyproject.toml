@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jupyter-schemas"
+dynamic = ["version"]
+description = 'Jupyter schemas'
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [{ name = "Zach Sailer", email = "zsailer@apple.com" }]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = ["jupyter_core"]
+
+[project.urls]
+Documentation = "https://github.com/unknown/jupyter-schemas#readme"
+Issues = "https://github.com/unknown/jupyter-schemas/issues"
+Source = "https://github.com/unknown/jupyter-schemas"
+
+[tool.hatch.version]
+path = "jupyter_schemas.py"
+
+[tool.hatch.build.targets.wheel.shared-data]
+"jupyter_server" = "share/jupyter/schema/jupyter_server"
+
+[tool.hatch.envs.default]
+dependencies = ["coverage[toml]>=6.5", "pytest"]
+[tool.hatch.envs.default.scripts]
+test = "pytest {args:tests}"
+test-cov = "coverage run -m pytest {args:tests}"
+cov-report = ["- coverage combine", "coverage report"]
+cov = ["test-cov", "cov-report"]
+
+[[tool.hatch.envs.all.matrix]]
+python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
+
+[tool.hatch.envs.types]
+dependencies = ["mypy>=1.0.0"]
+
+
+[tool.coverage.run]
+source_pkgs = ["jupyter_schemas", "tests"]
+branch = true
+parallel = true
+
+
+[tool.coverage.report]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
