@@ -22,18 +22,32 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = ["jupyter_core"]
+dependencies = [
+  "jsonschema",
+  "jupyter_core",
+]
 
 [project.urls]
 Documentation = "https://github.com/unknown/jupyter-schemas#readme"
 Issues = "https://github.com/unknown/jupyter-schemas/issues"
 Source = "https://github.com/unknown/jupyter-schemas"
 
+[project.optional-dependencies]
+test = [
+  "pytest",
+]
+docs = [
+  "pydata_sphinx_theme",
+  "sphinx",
+  "sphinx_design",
+  "sphinx-jsonschema",
+]
+
 [tool.hatch.version]
 path = "jupyter_schemas.py"
 
 [tool.hatch.build.targets.wheel.shared-data]
-"jupyter_server" = "share/jupyter/schema/jupyter_server"
+"schema" = "share/jupyter/schema"
 
 [tool.hatch.envs.default]
 dependencies = ["coverage[toml]>=6.5", "pytest"]
@@ -50,8 +64,15 @@ python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
 dependencies = ["mypy>=1.0.0"]
 
 
+[tool.pytest.ini_options]
+addopts = [
+    "-raXs", "--color=yes",
+]
+testpaths = ["tests/"]
+
+
 [tool.coverage.run]
-source_pkgs = ["jupyter_schemas", "tests"]
+source_pkgs = ["schema", "tests"]
 branch = true
 parallel = true
 

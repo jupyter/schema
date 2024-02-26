@@ -1,5 +1,6 @@
 {
-  "$id": "https://schema.jupyter.org/jupyter_server/events/gateway_client/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.jupyter.org/server/events/gateway-client/v1/gateway-client.schema.json",
   "version": 1,
   "title": "Gateway Client activities.",
   "personal-data": true,
