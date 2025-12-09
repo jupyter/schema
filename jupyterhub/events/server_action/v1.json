@@ -1,0 +1,29 @@
+{
+    "$id": "https://schema.jupyter.org/jupyterhub/events/server-action/v1",
+    "title": "JupyterHub server events",
+    "type": "object",
+    "version": 1, 
+    "description": "Record actions on user servers made via JupyterHub.\n\nJupyterHub can perform various actions on user servers via \ndirect interaction from users, or via the API. This event is \nrecorded whenever either of those happen.\n\nLimitations:\n\n1. This does not record all server starts / stops, only those\n   explicitly performed by JupyterHub. For example, a user's server\n   can go down because the node it was running on dies. That will\n   not cause an event to be recorded, since it was not initiated\n   by JupyterHub. In practice this happens often, so this is not\n   a complete record.\n2. Events are only recorded when an action succeeds.\n",
+    "properties": {
+    "action": {
+    "description": "Action performed by JupyterHub.\n\nThis is a required field.\n\nPossibl Values:\n\n1. start\n   A user's server was successfully started\n\n2. stop\n   A user's server was successfully stopped\n",
+    "enum": [
+        "start",
+        "stop"
+    ]
+    },
+    "servername": {
+    "description": "Name of the server this action was performed on.\n\nJupyterHub supports each user having multiple servers with\narbitrary names, and this field specifies the name of the\nserver.\n\nThe 'default' server is denoted by the empty string\n",
+    "type": "string"
+    },
+    "username": {
+    "description": "Name of the user whose server this action was performed on.\n\nThis is the normalized name used by JupyterHub itself,\nwhich is derived from the authentication provider used but \nmight not be the same as used in the authentication provider.\n",
+    "type": "string"
+    }
+    },
+    "required": [
+    "action",
+    "username",
+    "servername"
+    ]
+}
