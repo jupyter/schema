@@ -1,0 +1,84 @@
+{
+    "$id": "https://schema.jupyter.org/jupyter_kernels/connectionfile/v1",
+    "version": 1,
+    "title": "Jupyter Connection File",
+    "description": "A description of the data required to connect and send messages to a Jupyter Kernel",
+    "type": "object",
+
+    "definitions": {
+        "signature": {
+            "type": "object",
+            "required": ["signature_scheme", "key"],
+            "properties": {
+                "signature_scheme": {
+                    "enum": ["hmac-md5","hmac-sha256","hmac-sha512"],
+                    "description": "scheme used to sign the messages"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "key used to sign the messages"
+                }
+            }
+        },
+        "kernel_network": {
+            "type": "object",
+            "required": ["transport", "ip", "shell_port", "control_port", "stdin_port", "hb_port", "iopub_port"],
+            "properties": {
+                "transport": {
+                    "type": "string",
+                    "description": "transport protocol",
+                    "enum": ["tcp", "ipc", "inproc"]
+                },
+                "ip": {
+                    "type": "string",
+                    "description": "ip of the machine where the kernel runs"
+                },
+                "shell_port": {
+                    "type": ["integer","string"],
+                    "description": "port used by the shell channel"
+                },
+                "control_port": {
+                    "type": ["integer","string"],
+                    "description": "port used by the control channel"
+                },
+                "stdin_port": {
+                    "type": ["integer","string"],
+                    "description": "port used by the stdin channel"
+                },
+                "hb_port": {
+                    "type": ["integer","string"],
+                    "description": "port used by the heartbeat channel"
+                },
+                "iopub_port": {
+                    "type": ["integer","string"],
+                    "description": "port used by the iopub channel"
+                }
+            }
+        },
+        "encryption": {
+            "type": "object",
+            "description": "CurveZMQ keys for transport encryption. The two keys appear together; without them the kernel channels are not encrypted.",
+            "properties": {
+                "curve_publickey": {
+                    "type": "string",
+                    "pattern": "^[0-9a-zA-Z.\\-:+=^!/*?&<>()\\[\\]{}@%$#]{40}$",
+                    "description": "Z85-encoded 40-character ASCII string holding the server's CurveZMQ public key. Kernels must apply this to their ZMQ sockets before binding."
+                },
+                "curve_secretkey": {
+                    "type": "string",
+                    "pattern": "^[0-9a-zA-Z.\\-:+=^!/*?&<>()\\[\\]{}@%$#]{40}$",
+                    "description": "Z85-encoded 40-character ASCII string holding the server's CurveZMQ secret key. Kernels must apply this to their ZMQ sockets before binding."
+                }
+            },
+            "dependentRequired": {
+                "curve_publickey": ["curve_secretkey"],
+                "curve_secretkey": ["curve_publickey"]
+            }
+        }
+    },
+    "allOf": [
+        { "$ref": "#/definitions/kernel_network" },
+        { "$ref": "#/definitions/signature" },
+        { "$ref": "#/definitions/encryption" }
+    ]
+}

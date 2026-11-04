@@ -35,6 +35,7 @@ path = "jupyter_schemas.py"
 [tool.hatch.build.targets.wheel.shared-data]
 "jupyter_server" = "share/jupyter/schema/jupyter_server"
 "jupyterhub" = "share/jupyter/schema/jupyterhub"
+"jupyter_kernels" = "share/jupyter/schema/jupyter_kernels"
 
 [tool.hatch.envs.default]
 dependencies = ["coverage[toml]>=6.5", "pytest"]
