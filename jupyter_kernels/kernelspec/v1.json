@@ -80,6 +80,13 @@
                 "metadata": {
                     "description": "A dictionary of additional attributes about this kernel; used by clients to aid in kernel selection. Metadata added here should be namespaced for the tool reading and writing that metadata.",
                     "type": "object",
+                    "properties": {
+                        "supported_encryption": {
+                            "description": "A list of the encryption schemes the kernel can handle, e.g. [\"curve\"], declaring that it can use CurveZMQ keys from its connection file. Entries are matched case-insensitively.",
+                            "type": "array",
+                            "items": {"type": "string"}
+                        }
+                    },
                     "additionalProperties": {"type": "object"}
                 }
             }
